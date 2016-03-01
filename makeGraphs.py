@@ -111,7 +111,7 @@ def waterfallPlotFCallRegions():
 	})
 
 def barGraphLogBase2FC():
-	#sys.argv is a list of tab-delimted files with the first line being header
+	#sys.argv is a list of tab-delimted files NO HEADERS!!
 	#first column is gene name, 2nd column is average fold change
 	#each list represents a different group of data
 	temp=[]
@@ -236,7 +236,7 @@ def heatmapTopUpDownRegulate():
 if __name__=="__main__":	
 	#compareEnhancerNumber();
 	#distanceToTSS();
-	waterfallPlotFCallRegions();
-	#barGraphLogBase2FC();
+	#waterfallPlotFCallRegions();
+	barGraphLogBase2FC();
 	#heatmapTopUpDownRegulate();
 	

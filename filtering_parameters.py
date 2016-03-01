@@ -2,31 +2,32 @@ import sys
 
 def removeReadCounts():
 
-	f=open('filtered-'+str(sys.argv[1][:-4])+'.txt', 'w')
+	coverageCountMin=10
+	f=open('filtered-all-reps-min-coverage-'+str(coverageCountMin)+'-'+str(sys.argv[1][:-4])+'.txt', 'w')
 	with open(sys.argv[1]) as input:
 		for line in input:
 			lowInputCounts=0
 			line=line.split('\t')
-			if float(line[8])<5:
+			if float(line[8])<coverageCountMin:
 				lowInputCounts=lowInputCounts+1
-			if float(line[9])<5:
+			if float(line[9])<coverageCountMin:
 				lowInputCounts=lowInputCounts+1
-			if float(line[10])<5:
+			if float(line[10])<coverageCountMin:
 				lowInputCounts=lowInputCounts+1
-			if float(line[11])<5:
+			if float(line[11])<coverageCountMin:
 				lowInputCounts=lowInputCounts+1
-			if lowInputCounts>1:
+			if lowInputCounts>0:
 				continue;
 			lowExpCounts=0
-			if float(line[4])<5:
+			if float(line[4])<coverageCountMin:
 				lowExpCounts=lowExpCounts+1
-			if float(line[5])<5:
+			if float(line[5])<coverageCountMin:
 				lowExpCounts=lowExpCounts+1
-			if float(line[6])<5:
+			if float(line[6])<coverageCountMin:
 				lowExpCounts=lowExpCounts+1
-			if float(line[7])<5:
+			if float(line[7])<coverageCountMin:
 				lowExpCounts=lowExpCounts+1
-			if lowExpCounts>1:
+			if lowExpCounts>0:
 				continue;
 			else:
 				for i in range(0, len(line)-1):
@@ -53,7 +54,7 @@ def matchVehToDHT():
 	veh={}
 	dht={}
 	#f=open('filtered-FC-1.0-threshold-applied-regs-shared-by-veh-and-dht.txt', 'w')
-	f=open('filtered-veh-FC-1.0-threshold-noFC-DHT-threshold.txt', 'w')
+	f=open('filtered-veh-FC-1.1-threshold-DHT-FC-1.0-threshold.txt', 'w')
 	with open(sys.argv[1]) as input:
 		for line in input:
 			line=line.split('\t')
@@ -106,7 +107,7 @@ def matchVehDHTtoEachIndividualReplicate():
 		f.write(str(dht[x][0])+'\t'+str(dht[x][1])+'\t'+str(dht[x][2])+'\t'+str(dht[x][3])+'\t'+str(x)+'\n')
 
 if __name__=='__main__':
-	#removeReadCounts();
+	removeReadCounts();
 	#selectFCvalues();
 	#matchVehToDHT();
-	matchVehDHTtoEachIndividualReplicate();
+	#matchVehDHTtoEachIndividualReplicate();
